@@ -5,6 +5,8 @@ import {
 
 import PageApp from './PageApp';
 import HomePage from './HomePage';
+import UserPage from './UserPage';
+import UserDetails from './UserDetails';
 import RouteWithSubRoutes from './Route';
 
 const routes = [
@@ -15,6 +17,16 @@ const routes = [
         exact:true,
         path:'/',
         component: HomePage
+      },
+      {
+        exact:true,
+        path:'/users',
+        component: UserPage
+      },
+      {
+        exact:true,
+        path:'/user/:id',
+        component: UserDetails
       },
     ]
   }
