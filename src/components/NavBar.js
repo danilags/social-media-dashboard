@@ -20,6 +20,9 @@ const NavBar = (props) => (
     <Collapse isOpen={false} navbar>
       <Nav className="ml-auto" navbar>
         <NavItem>
+          <NavLink href="/users">Users</NavLink>
+        </NavItem>
+        <NavItem>
           <NavLink href="https://github.com/danilags">Daniel Agus</NavLink>
         </NavItem>
       </Nav>
