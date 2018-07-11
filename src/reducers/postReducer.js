@@ -8,6 +8,10 @@ const initialState = {
     data: [],
     status_code: 0
   },
+  albumData: {
+    data: [],
+    status_code: 0
+  },
   isFetch: false
 }
 
@@ -26,6 +30,23 @@ const postReducer = (state = initialState, action) => {
         ...state, 
           postData: {
             ...state.postData, data, status_code: status
+          },
+          isFetch: false
+      }
+    }
+    case `${GET_ALL_ALBUMS}_PENDING`: {
+      return {
+        ...state,
+          albumData: initialState.albumData,
+          isFetch: true
+      }
+    }
+    case GET_ALL_ALBUMS: {
+      const { data, status } = action.payload
+      return {
+        ...state, 
+          albumData: {
+            ...state.albumData, data, status_code: status
           },
           isFetch: false
       }
