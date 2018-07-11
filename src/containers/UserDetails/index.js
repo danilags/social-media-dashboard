@@ -13,7 +13,8 @@ import {
 
 import { Wrapper, User, UserPost, UserAlbum } from '../../components';
 import { getApiData, getDetails } from '../../actions';
-import { GET_ALL_POSTS, GET_ALL_ALBUMS } from '../../constants';
+import { GET_ALL_POSTS, GET_ALL_ALBUMS, GET_ALL_COMMENTS } from '../../constants';
+import ContentPost from './ContentPost';
 
 class UserDetails extends React.Component {
   constructor(props) {
@@ -25,6 +26,7 @@ class UserDetails extends React.Component {
       userAlbums: [],
       isFetchPost: true,
       isFetchAlbum: true,
+      isFetchComment: true,
     }
   }
 
@@ -57,6 +59,7 @@ class UserDetails extends React.Component {
     await this.setState({ userDetails: data });
     this.props.getApiData({ url: 'posts', type: GET_ALL_POSTS });
     this.props.getApiData({ url: 'albums', type: GET_ALL_ALBUMS });
+    this.props.getApiData({ url: 'comments', type: GET_ALL_COMMENTS });
   } 
 
   render() {
@@ -72,9 +75,9 @@ class UserDetails extends React.Component {
         <Row>
           <Col>
             <h3>Posts</h3>
-            <Card>
-              {this.state.userPosts.map((post, index) => (<UserPost key={index} post={post} />))}
-            </Card>
+            <ContentPost 
+              item={this.state.userPosts}
+            />
           </Col>
           <Col>
             <h3>Albums</h3>
