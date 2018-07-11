@@ -23,7 +23,6 @@ class ContentPost extends React.Component {
       <CardBody>
         {
           this.props.item.map((post, index) => {
-            const parent = <UserPost key={index} post={post} />
             let child = [];
             commemtList.data.map((comment, idx) => {
               if (post.id === comment.postId) {
@@ -50,8 +49,6 @@ class ContentPost extends React.Component {
   }
 
   render() {
-    console.log('PROPS ', this.props);
-    console.log('STATE ', this.state);
     return (
       <Card>
         { this.renderSource() }
