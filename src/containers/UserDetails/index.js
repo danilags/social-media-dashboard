@@ -8,10 +8,10 @@ import {
   CardSubtitle,
   CardText,
   Button,
-  Card
+  Card,
 } from 'reactstrap';
 
-import { Wrapper, User } from '../../components';
+import { Wrapper, User, UserPost, UserAlbum } from '../../components';
 import { getApiData, getDetails } from '../../actions';
 import { GET_ALL_POSTS, GET_ALL_ALBUMS } from '../../constants';
 
@@ -23,30 +23,30 @@ class UserDetails extends React.Component {
       userDetails: null,
       userPosts: [],
       userAlbums: [],
-      isFetch: true
+      isFetchPost: true,
+      isFetchAlbum: true,
     }
   }
 
   async componentWillReceiveProps(nextProps) {
     const { posts } = nextProps;
-    if (!posts.isFetch && posts.postData.status_code === 200 && this.state.isFetch) {
+    if (posts.postData.status_code === 200 && this.state.isFetchPost) {
       const { data } = posts.postData;
-      this.findUserPost(data);
+      const userPosts = data.filter(item => item.userId === parseInt(this.state.idUser));
       this.setState({
-        isFetch: false,
+        isFetchPost: false,
+        userPosts
+      })
+    } else if (posts.albumData.status_code === 200 && this.state.isFetchAlbum) {
+      const { data } = posts.albumData;
+      const userAlbums = data.filter(item => item.userId === parseInt(this.state.idUser));
+      this.setState({
+        isFetchAlbum: false,
+        userAlbums
       })
     }
   }
 
-  findUserPost(data) {
-    const userPosts = data.filter(item => {
-      return item.userId === parseInt(this.state.idUser)
-    });
-    this.setState({
-      userPosts
-    })
-  }
-  
   componentDidMount() {
     this.getUserDetails();
   }
@@ -71,20 +71,15 @@ class UserDetails extends React.Component {
         </Row>
         <Row>
           <Col>
+            <h3>Posts</h3>
             <Card>
-              {
-                this.state.userPosts.map((post, index) => (
-                  <CardBody>
-                    <CardTitle>{post.title}</CardTitle>
-                    <CardText>{post.body}</CardText>
-                  </CardBody>
-                ))
-              }
+              {this.state.userPosts.map((post, index) => (<UserPost key={index} post={post} />))}
             </Card>
           </Col>
           <Col>
+            <h3>Albums</h3>
             <Card>
-              <p>Album</p>
+              {this.state.userAlbums.map((album, index) => (<UserAlbum key={index} album={album} />))}
             </Card>
           </Col>
         </Row>
