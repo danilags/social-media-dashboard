@@ -3,18 +3,13 @@ import { connect } from 'react-redux';
 import {
   Row,
   Col,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  Button,
-  Card,
-} from 'reactstrap';
+  } from 'reactstrap';
 
-import { Wrapper, User, UserPost, UserAlbum } from '../../components';
+import { Wrapper, User } from '../../components';
 import { getApiData, getDetails } from '../../actions';
-import { GET_ALL_POSTS, GET_ALL_ALBUMS, GET_ALL_COMMENTS } from '../../constants';
+import { GET_ALL_POSTS, GET_ALL_ALBUMS, GET_ALL_COMMENTS, GET_ALL_PHOTOS } from '../../constants';
 import ContentPost from './ContentPost';
+import ContentAlbum from './ContentAlbum';
 
 class UserDetails extends React.Component {
   constructor(props) {
@@ -60,6 +55,8 @@ class UserDetails extends React.Component {
     this.props.getApiData({ url: 'posts', type: GET_ALL_POSTS });
     this.props.getApiData({ url: 'albums', type: GET_ALL_ALBUMS });
     this.props.getApiData({ url: 'comments', type: GET_ALL_COMMENTS });
+    this.props.getApiData({ url: 'photos', type: GET_ALL_PHOTOS });
+    return true;
   } 
 
   render() {
@@ -81,9 +78,9 @@ class UserDetails extends React.Component {
           </Col>
           <Col>
             <h3>Albums</h3>
-            <Card>
-              {this.state.userAlbums.map((album, index) => (<UserAlbum key={index} album={album} />))}
-            </Card>
+            <ContentAlbum 
+              item={this.state.userAlbums}
+            />
           </Col>
         </Row>
       </Wrapper>
