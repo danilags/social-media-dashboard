@@ -7,6 +7,7 @@ import PageApp from './PageApp';
 import HomePage from './HomePage';
 import UserPage from './UserPage';
 import UserDetails from './UserDetails';
+import PostDetails from './PostDetails';
 import RouteWithSubRoutes from './Route';
 
 const routes = [
@@ -27,6 +28,11 @@ const routes = [
         exact:true,
         path:'/user/:id',
         component: UserDetails
+      },
+      {
+        exact:true,
+        path:'/post/:id',
+        component: PostDetails
       },
     ]
   }
