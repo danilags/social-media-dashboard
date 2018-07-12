@@ -32,8 +32,8 @@ class ContentPost extends React.Component {
             return (
               <div>
                 <UserPost key={index} post={post} />
-                {child.map((item, index) => (
-                  <Alert>
+                {child.map((item, idx) => (
+                  <Alert key={idx}>
                     <p>{item.email}</p>
                     <CardText>
                       {item.body}
