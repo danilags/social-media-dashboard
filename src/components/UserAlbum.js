@@ -3,11 +3,10 @@ import {
   ListGroup,
   ListGroupItem,
 } from 'reactstrap';
-import User from '.';
 
 const UserAlbum = ({ album }) => (
   <ListGroup>
-    <ListGroupItem>{album.title}</ListGroupItem>
+    <ListGroupItem style={{ minHeight: '100px' }}><h4>{album.title}</h4></ListGroupItem>
   </ListGroup>
 );
 

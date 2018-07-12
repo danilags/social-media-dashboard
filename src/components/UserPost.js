@@ -4,7 +4,6 @@ import {
   CardText,
   CardTitle
 } from 'reactstrap';
-import User from '.';
 
 const UserPost = ({ post }) => (
   <CardBody>
