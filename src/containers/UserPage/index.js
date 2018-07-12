@@ -3,12 +3,6 @@ import { connect } from 'react-redux';
 import {
   Row,
   Col,
-  CardBody,
-  CardTitle,
-  CardSubtitle,
-  CardText,
-  Button,
-  Card
 } from 'reactstrap';
 
 import { Wrapper, User } from '../../components';
@@ -35,7 +29,7 @@ class UserPage extends React.Component {
         <h3>Loading...</h3>
       )
     } 
-    return userData.data.map((item, index) => <Col key={index} md={6}><User user={item} /></Col>)
+    return userData.data.map((item, index) => <Col key={index} md={6}><a href={`user/${item.id}`}><User user={item} /></a></Col>)
   }
 
   render() {
