@@ -4,26 +4,22 @@ import {
   CardTitle,
   CardSubtitle,
   CardText,
-  Button,
   Card,
-  NavLink
 } from 'reactstrap';
 
 const User = ({ user }) => (
-  <Card>
-    <a href={`user/${user.id}`} style={styles.container}>
-      <CardBody>
-        <CardTitle>{user.name}</CardTitle>
-        <CardSubtitle>{user.phone}</CardSubtitle>
-        <CardText>
-          Company: {user.company.name} 
-        </CardText>
-        <CardText>
-          Address: {user.address.street}, {user.address.suite}, {user.address.city} - {user.address.zipcode}
-        </CardText>
-        {/* <Button>Details</Button> */}
-      </CardBody>
-    </a>
+  <Card style={styles.container}>
+    <CardBody>
+      <CardTitle>{user.name}</CardTitle>
+      <CardSubtitle>{user.phone}</CardSubtitle>
+      <CardText>
+        Company: {user.company.name} 
+      </CardText>
+      <CardText>
+        Address: {user.address.street}, {user.address.suite}, {user.address.city} - {user.address.zipcode}
+      </CardText>
+      {/* <Button>Details</Button> */}
+    </CardBody>
   </Card>
 );
 
