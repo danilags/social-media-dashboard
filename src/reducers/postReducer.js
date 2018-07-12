@@ -1,6 +1,7 @@
 import { 
   GET_ALL_POSTS,
   GET_ALL_ALBUMS,
+  GET_ALL_PHOTOS,
   GET_ALL_COMMENTS
 } from '../constants';
 
@@ -14,6 +15,10 @@ const initialState = {
     status_code: 0
   },
   commemtList: {
+    data: [],
+    status_code: 0
+  },
+  photoList: {
     data: [],
     status_code: 0
   },
@@ -64,7 +69,6 @@ const postReducer = (state = initialState, action) => {
       }
     }
     case GET_ALL_COMMENTS: {
-      const { postData } = state;
       const { data, status } = action.payload
       // const lastStatePost = postData.data;
       // console.log('lastStatePost ', lastStatePost);
@@ -84,6 +88,23 @@ const postReducer = (state = initialState, action) => {
         ...state, 
           commemtList: {
             ...state.commemtList, data, status_code: status
+          },
+          isFetch: false
+      }
+    }
+    case `${GET_ALL_PHOTOS}_PENDING`: {
+      return {
+        ...state,
+          photoList: initialState.photoList,
+          isFetch: true
+      }
+    }
+    case GET_ALL_PHOTOS: {
+      const { data, status } = action.payload;
+      return {
+        ...state, 
+          photoList: {
+            ...state.photoList, data, status_code: status
           },
           isFetch: false
       }
