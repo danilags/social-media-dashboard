@@ -1,7 +1,4 @@
 import { API_CALL } from '../utils';
-import {
-  GET_ALL_USERS
-} from '../constants';
 
 export const getApiData = ({ url, type }) => async dispatch => {
   function onSuccess(data) {
